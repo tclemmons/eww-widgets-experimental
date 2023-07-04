@@ -1,2 +1,16 @@
-(include '
+(include 'resources/objects/widgets/volume/volume_widget.yuck')
 
+(defwindow volume
+    :monitor 0
+    :geometry
+    (geometry
+        :x '0%'
+        :y '0%'
+        :anchor 'center right'
+        :width '10%'
+        :height '10%'
+    )
+    :stacking 'fg'
+    :exclusive 'false'
+    (volume_widget)
+)

@@ -1,0 +1,15 @@
+#!/usr/bin/zsh
+
+level=$(cat current_volume.listener)
+
+min=0
+minlow=1
+minhigh=40
+mid=41
+max=100
+
+[[ $level = $min ]] && echo "" > volume_icon
+
+[[ $level >= $minlow && $level <= $minhigh ]] && echo '' > volume_icon
+
+[[ $level >= $mid && $level <= $max ]] && echo "" > volume_icon

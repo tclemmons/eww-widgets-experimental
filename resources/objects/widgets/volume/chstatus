@@ -1,0 +1,7 @@
+#!/usr/bin/zsh
+
+current_status=$(amixer sget Master | grep -o '\[on\]')
+
+[[ -z $current ]] && exec echo ''> volume_icon
+
+exec ./getIcon

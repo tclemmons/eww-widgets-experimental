@@ -1,12 +1,12 @@
 (defvar isHover false)
-(deflisten vol_value 'tail -F current_volume.level')
-(deflisten vol_status 'tail -F status_volume.level')
+(deflisten vol_status 'tail -F volume_icon')
+(deflisten vol_value 'tail -F current_volume.listener')
 
 (defwidget volume_widget []
     (box
     :spacing 3
     :space-evenly false
-    :orientation 'h'
+    :orientation 'v'
         (eventbox
         :onhover 'eww update isHover=true'
         :onhoverlost 'eww update isHover=false'
@@ -20,17 +20,23 @@
                 :max 101
                 :onchange '
                             amixer sset Master {}%;
-                            echo {} > current_volume.level;
-                            echo "unmuted" > status_volume.level
+                            echo {} > current_volume.listener;
+                            ./getIcon;
                           '
-                :orientation 'h'
-                )
-                
-                (button
-                :onclick 'amixer sset Master toggle; echo 0 > current_volume.level'
-                ''
+                :orientation 'v'
                 )
             )
         )
+                
+                (button
+                :onclick '
+                          amixer sset Master toggle;
+                          ./chstatus;
+                          '
+                :timeout '10ms'
+                vol_status
+                )
     )
 )
+
+
