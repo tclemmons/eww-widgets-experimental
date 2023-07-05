@@ -1,0 +1,5 @@
+#!/usr/bin/zsh
+
+volume=$(amixer sget Master | awk '/\[/{print $5}' | uniq | sed 's/\[//g; s/\]//g; s/\%//g';)
+
+echo $volume > current_volume.listener

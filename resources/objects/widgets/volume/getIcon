@@ -10,6 +10,6 @@ max=100
 
 [[ $level = $min ]] && echo "" > volume_icon
 
-[[ $level >= $minlow && $level <= $minhigh ]] && echo '' > volume_icon
+[[ $(( $level >= $minlow )) && $(( $level <= $minhigh )) ]] && echo '' > volume_icon
 
-[[ $level >= $mid && $level <= $max ]] && echo "" > volume_icon
+[[ $(( $level >= $mid )) && $(( $level <= $max )) ]] && echo "" > volume_icon

@@ -1,11 +1,11 @@
 (defvar isHover false)
-(deflisten vol_status 'tail -F volume_icon')
+(deflisten vol_icon 'tail -F volume_icon')
 (deflisten vol_value 'tail -F current_volume.listener')
 
 (defwidget volume_widget []
     (eventbox
-    :onhover 'eww update isHover=true'
-    :onhoverlost 'eww update isHover=false'
+    :onhover 'eww -c . update isHover=true; ./getVol'
+    :onhoverlost 'eww -c . update isHover=false'
         (box
         :spacing 3
         :space-evenly false
@@ -24,14 +24,14 @@
                             echo {} > current_volume.listener;
                             ./getIcon;
                           '
-                    ;(button
-                    ;:onclick '
-                    ;          amixer sset Master toggle;
-                    ;          ./chstatus;
-                    ;          '
-                    ;:timeout '10ms'
-                    ;vol_status
-                    ;)
+                    (button
+                    :onclick '
+                              amixer sset Master toggle;
+                              ./chstatus;
+                              '
+                    :timeout '10ms'
+                    vol_icon
+                    )
                 )
             )
         )
