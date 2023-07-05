@@ -7,8 +7,8 @@
         :x '0%'
         :y '0%'
         :anchor 'center right'
-        :width '10%'
-        :height '10%'
+        :width '2%'
+        :height '2%'
     )
     :stacking 'fg'
     :exclusive 'false'
